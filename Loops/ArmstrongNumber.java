@@ -1,3 +1,4 @@
+package Loops;
 public class ArmstrongNumber {
 
     public static int digits(int number) {
