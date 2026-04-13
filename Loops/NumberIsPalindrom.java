@@ -9,7 +9,6 @@ public class NumberIsPalindrom {
         int duplicate = number;
         int rev=0;
         
-
         while(duplicate > 0){
             int rem = duplicate % 10;
             rev = (rev*10)+rem;
