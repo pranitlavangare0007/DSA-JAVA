@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class IsPalindrom {
     public static boolean isPalindrom(int n){
-          int duplicate = n;
+        int duplicate = n;
         int rev=0;
         
         while(duplicate > 0){
