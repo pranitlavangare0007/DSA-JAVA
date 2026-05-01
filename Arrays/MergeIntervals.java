@@ -1,43 +1,44 @@
 package Arrays;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MergeIntervals {
 
     public static int[][] merge(int[][] intervals) {
-        List<List<Integer>> list = new ArrayList<>();
-       int index=0;
+
        
-       int i=1;
-       int j = 0;
+        
+        java.util.Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
 
-       while (i < intervals.length) {
-        if(intervals[i-1][j+1] > intervals[i][j] ){
-            System.out.println(intervals[i-1][j] + " "+intervals[i][j+1]);
-            list.add(new ArrayList<>());
-            list.get(index).add(intervals[i-1][j]);
-            list.get(index).add(intervals[i][j+1]);
-           i++;
-        }else{
-            System.out.println(intervals[i][j]+" "+intervals[i][j+1]);
-             list.add(new ArrayList<>());
-            list.get(index).add(intervals[i][j]);
-            list.get(index).add(intervals[i][j+1]);
-             i++;
+        List<int[]> list = new ArrayList<>();
+
+        int[] current = intervals[0]; 
+
+        for (int i = 1; i < intervals.length; i++) {
+
+
+            if (current[1] >= intervals[i][0]) {
+            
+                current[1] = Math.max(current[1], intervals[i][1]);
+            } else {
+    
+                list.add(current);
+                current = intervals[i]; // move forward
+            }
         }
-        index++;
-      
-        
-        
-        
-       }
-System.out.println(list.toString());
-        return intervals;
 
+        list.add(current);
+
+        return list.toArray(new int[list.size()][]);
     }
+
     public static void main(String[] args) {
-        int arr[][]={{1,3},{2,6},{8,10},{15,18}};
-        merge(arr);
+        int arr[][] = {{1,3},{2,6},{8,10},{15,18}};
+
+        int[][] res = merge(arr);
+
+        for (int i = 0; i < res.length; i++) {
+            System.out.println(java.util.Arrays.toString(res[i]));
+        }
     }
 }
