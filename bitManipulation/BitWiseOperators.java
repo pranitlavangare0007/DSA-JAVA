@@ -10,10 +10,23 @@ public class BitWiseOperators {
             System.out.println("one");
         }
     }
-public static int setIthBit(int n, int i) {
+
+    public static int setIthBit(int n, int i) {
         int bitMask = 1 << i;
         return n | bitMask;
     }
+
+    public static int clearIthBit(int n, int i) {
+        int bitMask = ~(1 << i);
+        return n & bitMask;
+    }
+
+    public static int updateIthBit(int n, int i, int newBit) {
+        n = clearIthBit(n, i);
+        int bitMask = newBit << i;
+        return n | bitMask;
+    }
+
     public static void main(String[] args) {
 
         // binary AND &
@@ -36,7 +49,11 @@ public static int setIthBit(int n, int i) {
 
         // getIthBit(8, 3);
 
-        System.out.println(setIthBit(10, 2));
+        // System.out.println(setIthBit(10, 2));
+
+        // System.out.println(clearIthBit(10, 1));
+
+        // System.out.println(updateIthBit(10, 2,1));
 
     }
 
