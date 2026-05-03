@@ -1,3 +1,4 @@
+package leedcodeContest;
 public class RoatedtedDigit {
 
      public static int rotatedDigits(int n) {
