@@ -28,7 +28,6 @@ public class RotateString {
 
             if (Arrays.equals(arr, res)) {
                 return true;
-
             }
             i++;
         }
