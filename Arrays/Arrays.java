@@ -11,7 +11,16 @@ public class Arrays {
         // for(int n:arr){
         //     System.out.print(n+" ");
         // }
-        System.out.println((double)5/2);
+        // System.out.println((double)5/2);
+       String s= "   fly me   to   the moon  ";
+        String[] new1 = s.trim().split("\\s+");
+
+        System.out.println(new1[new1.length-1].length()); 
+
+       for(String s1 : new1){
+System.out.println(s1+" ");
+       }
+       
     }
     
 }
