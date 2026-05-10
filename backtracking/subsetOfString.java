@@ -12,6 +12,6 @@ public class subsetOfString {
         subset(s, ans, i+1);
     }
     public static void main(String[] args) {
-        subset("abc", "", 0);
+        subset("aab", "", 0);
     }
 }
