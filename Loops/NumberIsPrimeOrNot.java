@@ -9,6 +9,7 @@ public class NumberIsPrimeOrNot {
         boolean isPrime=true;
         if(number<=1) {
             System.out.println("number is not prime");
+            sc.close();
             return;
         }
         for(int i =2;i<number;i++){
@@ -22,5 +23,6 @@ public class NumberIsPrimeOrNot {
         }else{
             System.out.println("number is not prime");
         }
+        sc.close();
     }
 }

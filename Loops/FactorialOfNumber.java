@@ -11,5 +11,7 @@ public class FactorialOfNumber {
             fact *= i;
         }
         System.out.println(fact);
+        sc.close();
     }
+    
 }

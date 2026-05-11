@@ -21,6 +21,7 @@ public class NumberIsPalindrom {
         else{
             System.out.println("number is not palindrom");
         }
-
+sc.close();
     }
+    
 }

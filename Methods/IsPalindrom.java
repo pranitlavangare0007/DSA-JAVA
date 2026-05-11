@@ -23,6 +23,6 @@ public class IsPalindrom {
         System.out.print("Enter number : ");
         int number = sc.nextInt();
         System.out.println(isPalindrom(number));
-       
+       sc.close();
     }
 }

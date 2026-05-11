@@ -22,5 +22,6 @@ class JavaBasics{
       System.out.println(billWithgst);
       int $ = 10;
       System.out.println($);
+      sc.close();
     }
 }

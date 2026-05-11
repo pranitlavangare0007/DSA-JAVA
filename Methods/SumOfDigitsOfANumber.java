@@ -19,6 +19,7 @@ while(n>0){
     int number = sc.nextInt();
     int res =sumOfDigits(number);
     System.out.println(res);
+    sc.close();
     }
     
 
