@@ -1,12 +1,12 @@
 package Arrays;
 
-public class FindMinimumInRoatedSortedArray {
+public class FindMinimumInSortedRoatedArrayII {
      public static int findMin(int[] nums) {
         int low=0;
     
 
         for(int i=1;i<nums.length;i++){
-            System.out.println(nums[i-1] + " "+ nums[i]);
+           
             if(nums[i-1] > nums[i]){
                 if(nums[low] > nums[i]){
                      low=i;
@@ -18,7 +18,7 @@ public class FindMinimumInRoatedSortedArray {
     }
 
     public static void main(String[] args) {
-        int arr[]={3,4,5,1,2};
+        int arr[]={4,4,4,1,2};
         System.out.println(findMin(arr));
     }
 }
