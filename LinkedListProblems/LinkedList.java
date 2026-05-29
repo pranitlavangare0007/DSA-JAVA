@@ -27,29 +27,33 @@ public class LinkedList {
         newNode.next = head;
         head = newNode;
     }
-    public void addLast(int data){
+
+    public void addLast(int data) {
         Node newNode = new Node(data);
 
-        if(head == null){
-            head =tail=newNode;
+        if (head == null) {
+            head = tail = newNode;
             return;
         }
-        tail.next=newNode;
-        tail=newNode;
+        tail.next = newNode;
+        tail = newNode;
 
     }
-    public void removeFirst(){
 
-        if(head == null){
+    public void removeFirst() {
+
+        if (head == null) {
             System.out.println("list is empty");
             return;
         }
-        head=head.next;
+        head = head.next;
 
     }
-    public void removeLast(){
-        
+
+    public void removeLast() {
+
     }
+
     public void print(Node head) {
         Node temp = head;
         while (temp != null) {
@@ -58,15 +62,49 @@ public class LinkedList {
 
         }
     }
-    
+
+    public static Node rotateRight(Node head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
+        int size = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        if (k > size)
+            k %= size;
+
+        for (int i = 0; i < k; i++) {
+
+            Node tem = head;
+
+            Node prev = null;
+            while (tem.next != null) {
+
+                prev = tem;
+                tem = tem.next;
+            }
+            prev.next = null;
+            tem.next = head;
+            head = tem;
+
+        }
+
+        return head;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-        // ll.addFirst(1);
-        // ll.addFirst(2);
-        
-        ll.addFirst(0);
-        ll.removeFirst();
-        ll.removeFirst();
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
+        rotateRight(head, 2);
         ll.print(head);
+
     }
 }
