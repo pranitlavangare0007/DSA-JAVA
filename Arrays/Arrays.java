@@ -18,7 +18,7 @@ public class Arrays {
 //         System.out.println(new1[new1.length-1].length());
 //        for(String s1 : new1){
 // System.out.println(s1+" ");
-System.out.println(100/10);
+System.out.println((int)'z'-'a'+1);
        }
        
     }

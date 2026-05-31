@@ -96,6 +96,63 @@ public class LinkedList {
         return head;
     }
 
+    public static Node reverseList(Node head) {
+        Node prev = null;
+        Node curr = head;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+
+        return head;
+    }
+
+    public static Node reverseBetween(Node head, int left, int right) {
+
+        if (head == null || left == right)
+            return head;
+        Node temp = head;
+
+        int count = 1;
+        Node tempHead = null;
+        Node tempTail = null;
+        Node prevLeft = null;
+        Node nextRigth = null;
+        Node prev = null;
+        while (temp != null) {
+
+            if (count == left) {
+                tempHead = temp;
+                prevLeft = prev;
+            }
+
+            if (count == right && temp.next != null) {
+                tempTail = temp;
+                nextRigth = temp.next;
+            }
+            count++;
+            prev = temp;
+            temp = temp.next;
+        }
+        tempTail.next = null;
+      
+        Node newHead = reverseList(tempHead);
+
+        if (prevLeft != null) {
+            prevLeft.next = newHead;
+        } else {
+            head = newHead;
+        }
+
+        tempHead.next = nextRigth;
+        return head;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addLast(1);
@@ -103,7 +160,7 @@ public class LinkedList {
         ll.addLast(3);
         ll.addLast(4);
         ll.addLast(5);
-        rotateRight(head, 2);
+        reverseBetween(head, 2, 4);
         ll.print(head);
 
     }
