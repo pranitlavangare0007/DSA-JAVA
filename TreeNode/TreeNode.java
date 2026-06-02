@@ -33,7 +33,7 @@ public class TreeNode {
       
     }
 
-    public static List<Integer> preOrder(TreeNode node){
+    public static List<Integer> inOrder(TreeNode node){
 
         List<Integer> list = new ArrayList<>();
         if(node == null){
@@ -41,21 +41,57 @@ public class TreeNode {
             return list ;
         }
        
-        list.addAll(preOrder(node.left));
+        list.addAll(inOrder(node.left));
         list.add(node.val);
         
-        list.addAll(preOrder(node.right));
+        list.addAll(inOrder(node.right));
 
         return list;
     }
+
+    public static List<Integer> preorderTraversal(TreeNode root) {
+        
+        List<Integer> list = new ArrayList<>();
+        if(root == null){
+            return list;
+        }
+        list.add(root.val);
+        list.addAll(preorderTraversal(root.left));
+        list.addAll(preorderTraversal(root.right));
+        return list;
+    }
+
+     public static List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if(root == null){
+            return list;
+        }
+       
+        list.addAll(postorderTraversal(root.left));
+        list.addAll(postorderTraversal(root.right));
+         list.add(root.val);
+        return list;
+    }
+     public static void preorderTraversalPrint(TreeNode root) {
+        
+       
+        if(root == null){
+            return ;
+        }
+      System.out.print( root.val + " ");
+       preorderTraversalPrint(root.left);
+      preorderTraversalPrint(root.right);
+       
+    }
+   
 
       public static void main(String[] args) {
         int nodes[]={1, -1, 2, 3, -1, -1, -1};
         
        BinaryTree tree = new BinaryTree();
        TreeNode node =tree.buildTree(nodes);
-         List<Integer> list = preOrder(node);
-         System.out.println(list);
+         
+       preorderTraversalPrint(node);
         
       }
   }
