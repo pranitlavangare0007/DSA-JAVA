@@ -143,15 +143,15 @@ public class TreeNode {
     }
 
     public static List<List<Integer>> levelOrder(TreeNode root) {
-        int depth = 0;
+
         List<List<Integer>> list = new ArrayList<>();
         if (root == null) {
-            System.out.println(depth);
+
             return list;
         }
 
         Queue<TreeNode> queue = new LinkedList<>();
-        depth++;
+
         queue.add(root);
         queue.add(null);
         List<Integer> ll = new ArrayList<>();
@@ -166,7 +166,7 @@ public class TreeNode {
                     break;
 
                 }
-                depth++;
+
                 ll = new ArrayList<>();
                 queue.add(null);
 
@@ -183,39 +183,61 @@ public class TreeNode {
             }
 
         }
-        System.out.println(depth);
+
         return list;
     }
 
     public static int maxDepth(TreeNode root) {
-        int depth = 0;
-       
+
+        if (root == null)
+            return 0;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+
+    }
+
+    public static int countNodes(TreeNode root) {
+        if (root == null)
+            return 0;
+        return countNodes(root.left) + countNodes(root.right) + 1;
+    }
+
+    public static int maxLevelSum(TreeNode root) {
+        int maxSum = Integer.MIN_VALUE;
+        int level = 0;
+        int ans=0;
         if (root == null) {
-         
-            return depth;
+
+            return level;
         }
 
         Queue<TreeNode> queue = new LinkedList<>();
-        depth++;
+
         queue.add(root);
         queue.add(null);
-       
+        level++;
+        int sum = 0;
         while (!queue.isEmpty()) {
 
             TreeNode cuTreeNode = queue.remove();
 
             if (cuTreeNode == null) {
-               
+              
+                if (sum > maxSum) {
+                   
+                   maxSum=sum;
+                   ans=level;
+                }
+
                 if (queue.isEmpty()) {
                     break;
 
                 }
-                depth++;
-                
+                level++;
+                sum = 0;
                 queue.add(null);
 
             } else {
-               
+                sum += cuTreeNode.val;
                 if (cuTreeNode.left != null) {
                     queue.add(cuTreeNode.left);
 
@@ -227,8 +249,8 @@ public class TreeNode {
             }
 
         }
-       
-        return depth;
+
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -241,7 +263,7 @@ public class TreeNode {
         // System.out.println(isSameTree(node, node1));
         // List<List<Integer>> list = levelOrder(node);
         // System.out.println(list);
-        System.out.println(maxDepth(node));
+        System.out.println(maxLevelSum(node));
 
     }
 }
