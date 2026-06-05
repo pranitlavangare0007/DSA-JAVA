@@ -252,6 +252,63 @@ public class TreeNode {
 
         return ans;
     }
+    int diameter=0;
+     public  int diameterOfBinaryTree(TreeNode root) {
+        maxHeight(root);
+       return diameter;
+    }
+    public  int maxHeight(TreeNode root) {
+
+        if (root == null)
+            return 0;
+
+        int leftheight = maxHeight(root.left);
+        int rightHeight = maxHeight(root.right);
+
+        diameter=Math.max(diameter,leftheight+ rightHeight);
+
+        return Math.max(leftheight, rightHeight)+1;
+
+    }
+
+    public static boolean isIdentical(TreeNode root , TreeNode subTree){
+
+        if(root == null && subTree == null){
+            return true;
+        }else if (root == null || subTree == null||root.val != subTree.val ) {
+            return false;
+            
+        }
+
+        if (!isIdentical(root.left, subTree.left)) {
+            return false;
+        }
+
+        if (!isIdentical(root.right, subTree.right)) {
+            return false;
+            
+        }
+        return true;
+        
+    }
+
+     public static boolean isSubtree(TreeNode root, TreeNode subRoot) {
+       
+        if(root == null){
+
+            return false;
+        }
+
+        if(root.val == subRoot.val){
+
+            if(isIdentical(root,subRoot)){
+
+                return true;
+            }
+        }
+
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
 
     public static void main(String[] args) {
         int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
@@ -263,7 +320,7 @@ public class TreeNode {
         // System.out.println(isSameTree(node, node1));
         // List<List<Integer>> list = levelOrder(node);
         // System.out.println(list);
-        System.out.println(maxLevelSum(node));
+        //System.out.println(diameterOfBinaryTree(node));
 
     }
 }

@@ -140,7 +140,7 @@ public class LinkedList {
             temp = temp.next;
         }
         tempTail.next = null;
-      
+
         Node newHead = reverseList(tempHead);
 
         if (prevLeft != null) {
@@ -151,6 +151,59 @@ public class LinkedList {
 
         tempHead.next = nextRigth;
         return head;
+    }
+
+    public Node reverseKGroup(Node head, int k) {
+        int size = 0;
+        Node szTemp = head;
+
+        while (szTemp != null) {
+            size++;
+            szTemp = szTemp.next;
+        }
+
+        if (k > size || head == null || k == 1) {
+            return head;
+        }
+
+        Node temp = head;
+        Node finalHead = null;
+        Node prevGroupTail = null;
+
+        while (size >= k) {
+
+            int revNum = 1;
+
+            Node curr = temp;
+            while (revNum < k) {
+                curr = curr.next;
+                revNum++;
+            }
+
+            Node nextGroup = curr.next;
+            curr.next = null;
+
+            Node newHead = reverseList(temp);
+
+            if (finalHead == null) {
+                finalHead = newHead;
+            }
+
+            if (prevGroupTail != null) {
+                prevGroupTail.next = newHead;
+            }
+
+            prevGroupTail = temp; // temp becomes tail after reversal
+
+            temp = nextGroup;
+            size -= k;
+        }
+
+        // attach remaining nodes (< k)
+        prevGroupTail.next = temp;
+
+        return finalHead;
+
     }
 
     public static void main(String[] args) {
