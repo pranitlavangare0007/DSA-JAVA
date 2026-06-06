@@ -1,8 +1,11 @@
 package TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 public class TreeNode {
@@ -201,57 +204,7 @@ public class TreeNode {
         return countNodes(root.left) + countNodes(root.right) + 1;
     }
 
-    public static int maxLevelSum(TreeNode root) {
-        int maxSum = Integer.MIN_VALUE;
-        int level = 0;
-        int ans=0;
-        if (root == null) {
-
-            return level;
-        }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-
-        queue.add(root);
-        queue.add(null);
-        level++;
-        int sum = 0;
-        while (!queue.isEmpty()) {
-
-            TreeNode cuTreeNode = queue.remove();
-
-            if (cuTreeNode == null) {
-              
-                if (sum > maxSum) {
-                   
-                   maxSum=sum;
-                   ans=level;
-                }
-
-                if (queue.isEmpty()) {
-                    break;
-
-                }
-                level++;
-                sum = 0;
-                queue.add(null);
-
-            } else {
-                sum += cuTreeNode.val;
-                if (cuTreeNode.left != null) {
-                    queue.add(cuTreeNode.left);
-
-                }
-                if (cuTreeNode.right != null) {
-                    queue.add(cuTreeNode.right);
-
-                }
-            }
-
-        }
-
-        return ans;
-    }
+   
     int diameter=0;
      public  int diameterOfBinaryTree(TreeNode root) {
         maxHeight(root);
@@ -310,6 +263,160 @@ public class TreeNode {
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
 
+    static class Info {
+    TreeNode node;
+     int hd;
+     
+     public Info(TreeNode node , int hd){
+        this.hd=hd;
+        this.node=node;
+     }
+    }
+
+    public static ArrayList<Integer> topView(TreeNode root) {
+        // code here
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        Queue<Info> q = new LinkedList<>();
+        Map<Integer,TreeNode> map = new HashMap<>();
+
+        int min=0;
+        int max = 0;
+
+        q.add(new Info(root, 0));
+        q.add(null);
+
+        while (!q.isEmpty()) {
+
+            Info current = q.remove();
+            if(current == null){
+
+                if(q.isEmpty()){
+                    break;
+                }else{
+                    q.add(null);
+                }
+            }else{
+
+                if(!map.containsKey(current.hd)){
+                    map.put(current.hd, current.node);
+                }
+                if(current.node.left != null){
+                    q.add(new Info(current.node.left, current.hd-1));
+                    min=Math.min(min, current.hd-1);
+                }
+                if(current.node.right != null){
+                    q.add(new Info(current.node.right, current.hd+1));
+                    max=Math.max(max, current.hd+1);
+                }
+            }
+
+            
+        }
+
+        for(int i=min;i<=max;i++){
+            list.add(map.get(i).val);
+        }
+
+        return list;
+        
+    }
+
+    public static int maxLevelSum(TreeNode root) {
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        Map<Integer,Integer> map = new HashMap<>();
+        int level = 1;
+        int sum =0;
+        q.add(root);
+        q.add(null);
+        map.put( level,root.val);
+
+        while (!q.isEmpty()) {
+
+            TreeNode curr = q.remove();
+
+            if (curr == null) {
+                map.put( level,sum);
+                sum=0;
+
+                if(q.isEmpty()){
+                    break;
+                }
+                level++;
+                q.add(null);
+                
+            }else{
+                sum += curr.val;
+
+                if(curr.left != null){
+                    q.add(curr.left);
+                }
+                if(curr.right != null){
+                    q.add(curr.right);
+                }
+            }
+            
+        }
+
+        int max=Integer.MIN_VALUE;
+        int maxLevel=0;
+        for(int i=1;i<= level;i++){
+           if(max < map.get(i)){
+            max=map.get(i);
+            maxLevel=i;
+           }
+        }
+        return maxLevel;
+
+    }
+    public static long kthLargestLevelSum(TreeNode root, int k) {
+        Queue<TreeNode> q = new LinkedList<>();
+        Map<Integer,Integer> map = new HashMap<>();
+        int level = 1;
+        int sum =0;
+        q.add(root);
+        q.add(null);
+        map.put( level,root.val);
+
+        while (!q.isEmpty()) {
+
+            TreeNode curr = q.remove();
+
+            if (curr == null) {
+                map.put( level,sum);
+                sum=0;
+
+                if(q.isEmpty()){
+                    break;
+                }
+                level++;
+                q.add(null);
+                
+            }else{
+                sum += curr.val;
+
+                if(curr.left != null){
+                    q.add(curr.left);
+                }
+                if(curr.right != null){
+                    q.add(curr.right);
+                }
+            }
+            
+        }
+
+       
+        int arr[]= new int[level];
+       
+        for(int i=1;i<= level;i++){
+          arr[i-1]=map.get(i);
+        }
+        Arrays.sort(arr);
+        return arr[arr.length-k];
+    }
+
     public static void main(String[] args) {
         int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         int nodes1[] = { 1, 2, 4, 8, -1, -1, -1, 5, -1, -1, 3, -1, 6, -1, 7, -1, -1 };
@@ -321,6 +428,8 @@ public class TreeNode {
         // List<List<Integer>> list = levelOrder(node);
         // System.out.println(list);
         //System.out.println(diameterOfBinaryTree(node));
+        //System.out.println(topView(node));
+        System.out.println(maxLevelSum(node));
 
     }
 }
