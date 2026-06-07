@@ -2,51 +2,40 @@ package Strings;
 
 public class LongestPalindromSubstring {
 
-     public static boolean isPalindrome(String s) {
-        StringBuilder updated = new StringBuilder();
-        for(int i=0;i<s.length();i++){
-            if(Character.isLetterOrDigit(s.charAt(i))){
-                updated.append(Character.toLowerCase(s.charAt(i)));
-            }
-        }
-       
-        int i=0;
-        int j= updated.length()-1;
+     public static String expand(int left ,int right , String s){
+        
 
-        while (i < j) {
-
-            if(updated.charAt(i) != updated.charAt(j)){
-                return false;
-            }
-            i++;
-            j--;
-            
+        while(left >=0 &&right <s.length() && s.charAt(left) == s.charAt(right)){
+            left--;
+            right++;
         }
 
-        return true;
+        
+        return s.substring(left+1,right);
     }
     public static String longestPalindrome(String s) {
-        StringBuilder longest = new StringBuilder();
+       String ans="";
 
         for(int i=0;i<s.length();i++){
-            for(int j=i;j<s.length();j++){
 
-                String sub =s.substring(i,j+1);
-                if(isPalindrome(sub)){
-
-                    if(sub.length() > longest.length()){
-                        longest.setLength(0);
-                    longest.append(sub);
-                    }
-                    
-                }
-            }
+            String odd=expand(i,i,s);
+            String even=expand(i,i+1,s);
+            
+           if(odd.length() > ans.length()){
+            ans=odd;
+           
+           }
+            if(even.length() > ans.length()){
+            ans=even;
+            
+           }
         }
-        return longest.toString();
+
+        return ans;
     }
     public static void main(String[] args) {
 
-        String s="babad";
+        String s="babab";
         System.out.println(longestPalindrome(s));
         
     }

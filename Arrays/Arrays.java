@@ -54,8 +54,29 @@ public class Arrays {
        }
     }
     public static void main(String[] args) {
-        int nums1[] = {1,2}, nums2[] = {3,4};
-        System.out.println(findMedianSortedArrays(nums1, nums2));
+        // int nums1[] = {1,2}, nums2[] = {3,4};
+        // System.out.println(findMedianSortedArrays(nums1, nums2));
+
+        int a=-236485757;
+
+        boolean isNegative=false;
+
+        if(a < 0){
+            isNegative=true;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(a);
+        sb.reverse();
+        if (isNegative) {
+            sb.deleteCharAt(sb.length()-1);
+        }
+        
+        int rev=Long.parseLong(sb.toString()) > Integer.MAX_VALUE || Long.parseLong(sb.toString()) < Integer.MIN_VALUE ? 0:Integer.parseInt(sb.toString());
+
+        if (isNegative) {
+            rev=-rev;
+        }
+        System.out.println(rev);
 
        }
        
