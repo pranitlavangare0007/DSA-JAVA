@@ -12,12 +12,21 @@ for(int i=1;i<arr.length;i++){
     
     leftBounds[i]=Math.max(arr[i],leftBounds[i-1]);
 }
+
+
+for(int n:leftBounds){
+    System.out.print(n+" ");
+}
+System.out.println();
 rightBounds[rightBounds.length-1]=arr[arr.length-1];
 for(int i=arr.length-2;i>=0;i--){
     
     rightBounds[i]=Math.max(arr[i], rightBounds[i+1]);
 }
 
+for(int n:rightBounds){
+    System.out.print(n+" ");
+}
 int trappedWater=0;
 
 for(int i=0;i<arr.length;i++){
@@ -32,7 +41,7 @@ return trappedWater;
     }
     public static void main(String[] args) {
         int[] heights={4,2,0,6,3,2,5};
-        System.out.println(trappingRainWater(heights));
+        trappingRainWater(heights);
     }
     
 }
