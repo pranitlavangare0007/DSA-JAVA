@@ -417,6 +417,72 @@ public class TreeNode {
         return arr[arr.length-k];
     }
 
+    public static boolean getPath(TreeNode root , TreeNode n ,ArrayList<TreeNode> path){
+
+        if(root == null){
+            return false;
+        }
+
+        path.add(root);
+
+        if(root == n){
+            return true;
+        }
+
+        boolean leftPath = getPath(root.left, n, path);
+        boolean rightPath = getPath(root.right, n, path);
+
+        if (rightPath || leftPath) {
+            return true;
+            
+        }
+
+        path.remove(path.size()-1);
+
+        return false;
+    }
+
+      public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        ArrayList<TreeNode> pPath = new ArrayList<>();
+        ArrayList<TreeNode> qPath = new ArrayList<>();
+
+        getPath(root, p, pPath);
+        getPath(root, q, qPath);
+        int i=0;
+        for(;i<pPath.size() && i< qPath.size();i++){
+
+            if(pPath.get(i) != qPath.get(i)){
+                break;
+            }
+        }
+        return pPath.get(i-1);
+        
+    }
+
+     public boolean hasPathSum(TreeNode root, int targetSum) {
+        
+        
+        if(root == null){
+            return false;
+        }
+        targetSum -= root.val;
+
+        if(root.left == null && root.right == null){
+            return targetSum == 0;
+        }
+
+        boolean isLeft = hasPathSum(root.left, targetSum);
+         boolean isRight = hasPathSum(root.right, targetSum);
+
+         if(isLeft || isRight){
+            return true;
+         }
+
+         return false;
+
+    }
+
     public static void main(String[] args) {
         int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         int nodes1[] = { 1, 2, 4, 8, -1, -1, -1, 5, -1, -1, 3, -1, 6, -1, 7, -1, -1 };
