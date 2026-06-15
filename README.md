@@ -238,8 +238,8 @@ Please follow the existing folder naming convention and package structure.
 
 Feel free to reach out for collaboration, questions, or feedback:
 
-- 🐙 **GitHub:** [@your-username](https://github.com/pranitlavangare0007)
-- 💼 **LinkedIn:** [Your Name](https://www.linkedin.com/in/pranit-lavangare/)
+- 🐙 **GitHub:** (https://github.com/pranitlavangare0007)
+- 💼 **LinkedIn:** (https://www.linkedin.com/in/pranit-lavangare/)
 - 📧 **Email:** pranitlavangare0007@gmail.com
 
 ---
