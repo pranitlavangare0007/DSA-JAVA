@@ -1,7 +1,6 @@
 package LinkedListProblems;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 class ListNode {
     int val;

@@ -1,7 +1,6 @@
 package stackPractice;
 
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.Stack;
 
 public class MaxAreaOfHistogram {

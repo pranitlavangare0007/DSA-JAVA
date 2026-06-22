@@ -10,7 +10,7 @@ public class ReversefirstKofaQueue {
         Queue<Integer> result = new LinkedList<>();
 
         Stack<Integer> stack = new Stack<>();
-        int n=q.size();
+       
         for(int i=0;i<k;i++){
             stack.add(q.remove());
         }
