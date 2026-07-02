@@ -251,3 +251,19 @@ Feel free to reach out for collaboration, questions, or feedback:
 *Happy Coding & Best of Luck with your Interviews! 🚀*
 
 </div>
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Math
+|  |
+| ------- |
+| [0070-climbing-stairs](https://github.com/pranitlavangare0007/DSA-JAVA/tree/master/0070-climbing-stairs) |
+## Dynamic Programming
+|  |
+| ------- |
+| [0070-climbing-stairs](https://github.com/pranitlavangare0007/DSA-JAVA/tree/master/0070-climbing-stairs) |
+## Memoization
+|  |
+| ------- |
+| [0070-climbing-stairs](https://github.com/pranitlavangare0007/DSA-JAVA/tree/master/0070-climbing-stairs) |
+<!---LeetCode Topics End-->
