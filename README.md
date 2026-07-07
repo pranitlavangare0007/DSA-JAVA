@@ -259,6 +259,7 @@ Feel free to reach out for collaboration, questions, or feedback:
 | ------- |
 | [0070-climbing-stairs](https://github.com/pranitlavangare0007/DSA-JAVA/tree/master/0070-climbing-stairs) |
 | [2652-sum-multiples](https://github.com/pranitlavangare0007/DSA-JAVA/tree/master/2652-sum-multiples) |
+| [3754-concatenate-non-zero-digits-and-multiply-by-sum-i](https://github.com/pranitlavangare0007/DSA-JAVA/tree/master/3754-concatenate-non-zero-digits-and-multiply-by-sum-i) |
 ## Dynamic Programming
 |  |
 | ------- |
